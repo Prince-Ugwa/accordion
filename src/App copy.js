@@ -24,27 +24,19 @@ export default function App() {
 }
 
 function Accordion({ data }) {
-  const [curOpen, setCurOpen] = useState(1);
   return (
     <div className="accordion">
       {data.map((el, i) => (
-        <AccordionItem
-          curOpen={curOpen}
-          onOpen={setCurOpen}
-          title={el.title}
-          text={el.text}
-          num={i}
-          key={el.title}
-        />
+        <AccordionItem title={el.title} text={el.text} num={i} key={el.title} />
       ))}
     </div>
   );
 }
-function AccordionItem({ curOpen, onOpen, num, title, text }) {
-  const isOpen = num === curOpen;
+function AccordionItem({ num, title, text }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   function handleToggle() {
-    // setIsOpen((openMsg) => !openMsg);
-    onOpen(num);
+    setIsOpen((openMsg) => !openMsg);
   }
 
   return (
